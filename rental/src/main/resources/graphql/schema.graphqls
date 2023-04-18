@@ -1,0 +1,54 @@
+type Query {
+    rentalById(id: ID): RentalOutput
+}
+type Mutation {
+    requestRental(createRentalInput: CreateRentalInput) : ID
+    confirmRental(confirmRentalInput: ConfirmRentalInput) : ID
+    pickCar(pickCarInput: PickCarInput) : ID
+}
+
+type RentalOutput {
+    requestId: ID!
+    customerName: String!
+    dateFrom: String!
+    dateTo: String!
+    locationFrom: String!
+    locationTo: String!
+    price: Int!
+    category: String!
+    status: String!
+
+    contractId: String
+    carId: String
+
+    pickedTime: String
+    pickNotes: String
+
+    droppedTime: String
+    droppedNotes: String
+
+    verifiedTime: String
+    verifiedNotes: String
+
+}
+
+input CreateRentalInput {
+    customerName: String
+    dateFrom: String
+    dateTo: String
+    locationFrom: String
+    locationTo: String
+    price: Int
+    category: String
+}
+
+input ConfirmRentalInput {
+    rentalRequestId: String!
+    carId: String
+}
+
+input PickCarInput {
+    rentalRequestId: String!
+    pickTime: String
+    pickNotes: String
+}
